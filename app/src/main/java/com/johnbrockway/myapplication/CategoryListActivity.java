@@ -4,10 +4,14 @@ import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.johnbrockway.myapplication.data.DataAccessObject;
+import com.johnbrockway.myapplication.data.Database;
+import com.johnbrockway.myapplication.data.Note;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.provider.ContactsContract;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,6 +24,15 @@ public class CategoryListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_category_list);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Note note = new Note();
+        note.text = "test";
+        note.world = 0;
+        Database db = Database.getDatabase(this);
+        DataAccessObject dao = db.dataAccessObject();
+        Database.databaseWriteExecutor.execute(() -> {
+            dao.insertNote(note);
+        });
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
