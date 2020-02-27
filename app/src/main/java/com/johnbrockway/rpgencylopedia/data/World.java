@@ -10,4 +10,7 @@ public class World {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     public int id;
+
+    @ColumnInfo(name = "name")
+    public String name;
 }
