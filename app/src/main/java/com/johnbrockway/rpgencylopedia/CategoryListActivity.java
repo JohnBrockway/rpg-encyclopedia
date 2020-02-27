@@ -1,17 +1,16 @@
-package com.johnbrockway.myapplication;
+package com.johnbrockway.rpgencylopedia;
 
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-import com.johnbrockway.myapplication.data.DataAccessObject;
-import com.johnbrockway.myapplication.data.Database;
-import com.johnbrockway.myapplication.data.Note;
+import com.johnbrockway.rpgencylopedia.data.DataAccessObject;
+import com.johnbrockway.rpgencylopedia.data.Database;
+import com.johnbrockway.rpgencylopedia.data.Note;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.provider.ContactsContract;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;

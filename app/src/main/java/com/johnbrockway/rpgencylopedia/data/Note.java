@@ -1,11 +1,11 @@
-package com.johnbrockway.myapplication.data;
+package com.johnbrockway.rpgencylopedia.data;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "categories")
+@Entity(tableName = "notes")
 public class Note {
 
     @PrimaryKey(autoGenerate = true)
@@ -13,7 +13,7 @@ public class Note {
     public int id;
 
     /**
-     * The {@link com.johnbrockway.myapplication.data.World#id} that this category belongs to
+     * The {@link com.johnbrockway.rpgencylopedia.data.World#id} that this category belongs to
      */
     @ColumnInfo(name = "world")
     public int world;

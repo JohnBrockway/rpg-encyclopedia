@@ -1,4 +1,4 @@
-package com.johnbrockway.myapplication.data;
+package com.johnbrockway.rpgencylopedia.data;
 
 import android.content.Context;
 import androidx.room.Room;

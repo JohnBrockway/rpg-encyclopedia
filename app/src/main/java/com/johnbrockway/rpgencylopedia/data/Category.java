@@ -1,4 +1,4 @@
-package com.johnbrockway.myapplication.data;
+package com.johnbrockway.rpgencylopedia.data;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -12,7 +12,7 @@ public class Category {
     public int id;
 
     /**
-     * The {@link com.johnbrockway.myapplication.data.World#id} that this category belongs to
+     * The {@link com.johnbrockway.rpgencylopedia.data.World#id} that this category belongs to
      */
     @ColumnInfo(name = "world")
     public int world;

@@ -1,4 +1,4 @@
-package com.johnbrockway.myapplication.data;
+package com.johnbrockway.rpgencylopedia.data;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

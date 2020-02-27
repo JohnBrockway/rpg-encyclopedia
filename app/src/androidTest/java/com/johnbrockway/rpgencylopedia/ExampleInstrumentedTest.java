@@ -1,4 +1,4 @@
-package com.johnbrockway.myapplication;
+package com.johnbrockway.rpgencylopedia;
 
 import android.content.Context;
 
