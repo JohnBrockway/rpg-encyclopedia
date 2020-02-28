@@ -13,7 +13,8 @@ import java.util.concurrent.Executors;
                 Entry.class,
                 Note.class
         },
-        version = 1)
+        version = 2,
+        exportSchema = false)
 public abstract class Database extends RoomDatabase {
     public abstract DataAccessObject dataAccessObject();
     private static volatile Database INSTANCE;
@@ -28,6 +29,7 @@ public abstract class Database extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             Database.class, "rpg_encyclopedia")
+                            .fallbackToDestructiveMigration()
                             .build();
                 }
             }
