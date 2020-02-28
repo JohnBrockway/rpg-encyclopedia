@@ -7,15 +7,17 @@ import com.google.android.material.snackbar.Snackbar;
 import com.johnbrockway.rpgencylopedia.data.DataAccessObject;
 import com.johnbrockway.rpgencylopedia.data.Database;
 import com.johnbrockway.rpgencylopedia.data.Note;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
 public class CategoryListActivity extends AppCompatActivity {
+    private RecyclerView categoriesRecyclerView;
+    private CategoriesAdapter categoriesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,11 @@ public class CategoryListActivity extends AppCompatActivity {
         Database.databaseWriteExecutor.execute(() -> {
             dao.insertNote(note);
         });
+
+        categoriesRecyclerView = findViewById(R.id.categories_recycler_view);
+        categoriesAdapter = new CategoriesAdapter(this);
+        categoriesRecyclerView.setAdapter(categoriesAdapter);
+        categoriesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
