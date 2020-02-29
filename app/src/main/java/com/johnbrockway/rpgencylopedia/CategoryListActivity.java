@@ -4,16 +4,22 @@ import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.johnbrockway.rpgencylopedia.data.Category;
 import com.johnbrockway.rpgencylopedia.data.DataAccessObject;
 import com.johnbrockway.rpgencylopedia.data.Database;
 import com.johnbrockway.rpgencylopedia.data.Note;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import java.util.List;
 
 public class CategoryListActivity extends AppCompatActivity {
     private RecyclerView categoriesRecyclerView;
@@ -26,19 +32,32 @@ public class CategoryListActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Note note = new Note();
-        note.text = "test";
-        note.world = 0;
-        Database db = Database.getDatabase(this);
-        DataAccessObject dao = db.dataAccessObject();
-        Database.databaseWriteExecutor.execute(() -> {
-            dao.insertNote(note);
-        });
-
         categoriesRecyclerView = findViewById(R.id.categories_recycler_view);
         categoriesAdapter = new CategoriesAdapter(this);
         categoriesRecyclerView.setAdapter(categoriesAdapter);
         categoriesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        Category category1 = new Category();
+        category1.listLabel = "test";
+        category1.world = 0;
+        Category category2 = new Category();
+        category2.listLabel = "test 2";
+        category2.world = 0;
+        Database db = Database.getDatabase(this);
+        DataAccessObject dao = db.dataAccessObject();
+        dao.getAllCategoriesForWorld(0).observe(this, new Observer<List<Category>>() {
+            @Override
+            public void onChanged(List<Category> categories) {
+                Log.d("johnbrockway", Integer.toString(categories.size()));
+                Log.d("johnbrockway", categories.get(0).listLabel);
+                categoriesAdapter.setCategories(categories);
+            }
+        });
+
+        Database.databaseWriteExecutor.execute(() -> {
+            dao.insertCategory(category1);
+            dao.insertCategory(category2);
+        });
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

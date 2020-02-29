@@ -28,9 +28,9 @@ public interface DataAccessObject {
     @Query("SELECT * FROM categories WHERE world = :worldID")
     LiveData<List<Category>> getAllCategoriesForWorld(int worldID);
 
-    @Query("SELECT * from entries WHERE category = :categoryID")
+    @Query("SELECT * FROM entries WHERE category = :categoryID")
     LiveData<List<Entry>> getAllEntriesForCategory(int categoryID);
 
-    @Query("SELECT * from notes WHERE id IN (:ids)")
+    @Query("SELECT * FROM notes WHERE id IN (:ids)")
     LiveData<List<Note>> getAllNotesForList(List<Integer> ids);
 }
