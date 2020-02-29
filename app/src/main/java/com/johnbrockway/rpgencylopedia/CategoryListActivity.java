@@ -7,18 +7,15 @@ import com.google.android.material.snackbar.Snackbar;
 import com.johnbrockway.rpgencylopedia.data.Category;
 import com.johnbrockway.rpgencylopedia.data.DataAccessObject;
 import com.johnbrockway.rpgencylopedia.data.Database;
-import com.johnbrockway.rpgencylopedia.data.Note;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import java.util.List;
 
 public class CategoryListActivity extends AppCompatActivity {
@@ -32,6 +29,7 @@ public class CategoryListActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        this.deleteDatabase("rpg_encyclopedia");
         categoriesRecyclerView = findViewById(R.id.categories_recycler_view);
         categoriesAdapter = new CategoriesAdapter(this);
         categoriesRecyclerView.setAdapter(categoriesAdapter);
@@ -49,7 +47,6 @@ public class CategoryListActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<Category> categories) {
                 Log.d("johnbrockway", Integer.toString(categories.size()));
-                Log.d("johnbrockway", categories.get(0).listLabel);
                 categoriesAdapter.setCategories(categories);
             }
         });
