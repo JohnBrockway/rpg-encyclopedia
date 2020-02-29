@@ -1,6 +1,7 @@
 package com.johnbrockway.rpgencylopedia;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.johnbrockway.rpgencylopedia.data.DataAccessObject;
 import com.johnbrockway.rpgencylopedia.data.Database;
 import com.johnbrockway.rpgencylopedia.data.Entry;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EntryListActivity extends AppCompatActivity {
@@ -30,16 +32,21 @@ public class EntryListActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        int categoryID = getIntent().getIntExtra(
+                getString(R.string.intent_category_id), -1);
+
         entriesRecyclerView = findViewById(R.id.entries_recycler_view);
         entriesAdapter = new EntriesAdapter(this);
         entriesRecyclerView.setAdapter(entriesAdapter);
         entriesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        Entry entry1 = new Entry(0, 0, "entry 1", null, null);
-        Entry entry2 = new Entry(0, 0, "entry 2", null, null);
+        Entry entry1 = new Entry(0, 1, "entry 1", null, null);
+        Entry entry2 = new Entry(0, 1, "entry 2", null, null);
+        Entry entry3 = new Entry(0, 2, "entry 3", null, null);
+        Entry entry4 = new Entry(0, 2, "entry 4", null, null);
         Database db = Database.getDatabase(this);
         DataAccessObject dao = db.dataAccessObject();
-        dao.getAllEntriesForCategory(0).observe(this, new Observer<List<Entry>>() {
+        dao.getAllEntriesForCategory(categoryID).observe(this, new Observer<List<Entry>>() {
             @Override
             public void onChanged(List<Entry> entries) {
                 entriesAdapter.setEntries(entries);
@@ -49,6 +56,8 @@ public class EntryListActivity extends AppCompatActivity {
         Database.databaseWriteExecutor.execute(() -> {
             dao.insertEntry(entry1);
             dao.insertEntry(entry2);
+            dao.insertEntry(entry3);
+            dao.insertEntry(entry4);
         });
 
         FloatingActionButton fab = findViewById(R.id.fab);

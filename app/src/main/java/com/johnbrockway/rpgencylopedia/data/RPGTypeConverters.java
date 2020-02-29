@@ -11,6 +11,10 @@ public class RPGTypeConverters {
     @TypeConverter
     public static String stringFromListOfInteger(List<Integer> list) {
         String returnString = "";
+        if (list == null || list.size() == 0) {
+            return returnString;
+        }
+
         for (Integer e : list) {
             returnString += e.toString();
             returnString += delimiter;
@@ -20,7 +24,7 @@ public class RPGTypeConverters {
 
     @TypeConverter
     public static List<Integer> listOfIntegerFromString(String string) {
-        List<Integer> returnList = new ArrayList<Integer>();
+        List<Integer> returnList = new ArrayList<>();
         String[] stringArray = string.split(delimiter);
         for (int i = 0 ; i < stringArray.length ; i++) {
             try {
