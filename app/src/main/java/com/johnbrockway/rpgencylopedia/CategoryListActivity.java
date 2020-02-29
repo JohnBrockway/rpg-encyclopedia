@@ -35,12 +35,8 @@ public class CategoryListActivity extends AppCompatActivity {
         categoriesRecyclerView.setAdapter(categoriesAdapter);
         categoriesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        Category category1 = new Category();
-        category1.listLabel = "test";
-        category1.world = 0;
-        Category category2 = new Category();
-        category2.listLabel = "test 2";
-        category2.world = 0;
+        Category category1 = new Category(0, "tests", "img", "test");
+        Category category2 = new Category(0, "tests 2", "img", "test 2");
         Database db = Database.getDatabase(this);
         DataAccessObject dao = db.dataAccessObject();
         dao.getAllCategoriesForWorld(0).observe(this, new Observer<List<Category>>() {

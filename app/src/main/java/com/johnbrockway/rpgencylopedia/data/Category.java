@@ -7,6 +7,13 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "categories")
 public class Category {
 
+    public Category(int world, String listLabel, String icon, String singularLabel) {
+        this.world = world;
+        this.listLabel = listLabel;
+        this.icon = icon;
+        this.singularLabel = singularLabel;
+    }
+
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     public int id;

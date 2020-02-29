@@ -4,11 +4,18 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
-
 import java.util.List;
 
 @Entity(tableName = "entries")
 public class Entry {
+
+    public Entry(int world, int category, String name, List<Integer> links, List<Integer> notes) {
+        this.world = world;
+        this.category = category;
+        this.name = name;
+        this.links = links;
+        this.notes = notes;
+    }
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")

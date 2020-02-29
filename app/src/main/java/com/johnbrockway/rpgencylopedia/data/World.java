@@ -7,6 +7,10 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "worlds")
 public class World {
 
+    public World(String name) {
+        this.name = name;
+    }
+
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     public int id;
