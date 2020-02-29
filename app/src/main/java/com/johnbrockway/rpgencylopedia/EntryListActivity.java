@@ -1,7 +1,6 @@
 package com.johnbrockway.rpgencylopedia;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +17,6 @@ import com.johnbrockway.rpgencylopedia.data.DataAccessObject;
 import com.johnbrockway.rpgencylopedia.data.Database;
 import com.johnbrockway.rpgencylopedia.data.Entry;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class EntryListActivity extends AppCompatActivity {
@@ -54,10 +52,10 @@ public class EntryListActivity extends AppCompatActivity {
         });
 
         Database.databaseWriteExecutor.execute(() -> {
-            dao.insertEntry(entry1);
-            dao.insertEntry(entry2);
-            dao.insertEntry(entry3);
-            dao.insertEntry(entry4);
+            dao.insert(entry1);
+            dao.insert(entry2);
+            dao.insert(entry3);
+            dao.insert(entry4);
         });
 
         FloatingActionButton fab = findViewById(R.id.fab);

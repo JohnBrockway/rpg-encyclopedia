@@ -48,8 +48,8 @@ public class CategoryListActivity extends AppCompatActivity {
         });
 
         Database.databaseWriteExecutor.execute(() -> {
-            dao.insertCategory(category1);
-            dao.insertCategory(category2);
+            dao.insert(category1);
+            dao.insert(category2);
         });
 
         FloatingActionButton fab = findViewById(R.id.fab);

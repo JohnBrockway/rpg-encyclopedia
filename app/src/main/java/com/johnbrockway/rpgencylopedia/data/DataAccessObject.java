@@ -11,16 +11,16 @@ import java.util.List;
 public interface DataAccessObject {
 
     @Insert
-    void insertWorld(World world);
+    void insert(World world);
 
     @Insert
-    void insertCategory(Category category);
+    void insert(Category category);
 
     @Insert
-    void insertEntry(Entry entry);
+    void insert(Entry entry);
 
     @Insert
-    void insertNote(Note note);
+    void insert(Note note);
 
     @Query("SELECT * FROM worlds")
     LiveData<List<World>> getAllWorlds();
