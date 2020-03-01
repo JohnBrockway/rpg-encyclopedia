@@ -16,9 +16,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.johnbrockway.rpgencylopedia.data.DataAccessObject;
 import com.johnbrockway.rpgencylopedia.data.Database;
 import com.johnbrockway.rpgencylopedia.data.Entry;
-import com.johnbrockway.rpgencylopedia.data.Note;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class EntryListActivity extends AppCompatActivity {
@@ -40,30 +38,6 @@ public class EntryListActivity extends AppCompatActivity {
         entriesRecyclerView.setAdapter(entriesAdapter);
         entriesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        List<Integer> links1 = new ArrayList<>();
-        links1.add(2);
-        links1.add(3);
-        links1.add(4);
-        List<Integer> links2 = new ArrayList<>();
-        links2.add(1);
-        links2.add(3);
-        links2.add(4);
-        List<Integer> links3 = new ArrayList<>();
-        links3.add(1);
-        links3.add(2);
-        links3.add(4);
-        List<Integer> links4 = new ArrayList<>();
-        links4.add(1);
-        links4.add(2);
-        links4.add(3);
-        Entry entry1 = new Entry(0, 1, "entry 1", links1, links1);
-        Entry entry2 = new Entry(0, 1, "entry 2", links2, links2);
-        Entry entry3 = new Entry(0, 2, "entry 3", links3, links3);
-        Entry entry4 = new Entry(0, 2, "entry 4", links4, links4);
-        Note note1 = new Note(0, "note 1");
-        Note note2 = new Note(0, "note 2");
-        Note note3 = new Note(0, "note 3");
-        Note note4 = new Note(0, "note 4");
         Database db = Database.getDatabase(this);
         DataAccessObject dao = db.dataAccessObject();
         dao.getAllEntriesForCategory(categoryID).observe(this, new Observer<List<Entry>>() {
@@ -71,17 +45,6 @@ public class EntryListActivity extends AppCompatActivity {
             public void onChanged(List<Entry> entries) {
                 entriesAdapter.setEntries(entries);
             }
-        });
-
-        Database.databaseWriteExecutor.execute(() -> {
-            dao.insert(entry1);
-            dao.insert(entry2);
-            dao.insert(entry3);
-            dao.insert(entry4);
-            dao.insert(note1);
-            dao.insert(note2);
-            dao.insert(note3);
-            dao.insert(note4);
         });
 
         FloatingActionButton fab = findViewById(R.id.fab);
