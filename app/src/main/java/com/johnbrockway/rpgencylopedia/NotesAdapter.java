@@ -8,11 +8,13 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.johnbrockway.rpgencylopedia.data.Note;
+
 import java.util.List;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHolder> {
     private LayoutInflater layoutInflater;
-    private List<String> notes;
+    private List<Note> notes;
 
     public class NoteViewHolder extends RecyclerView.ViewHolder {
         public TextView textView;
@@ -35,7 +37,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
 
     @Override
     public void onBindViewHolder(NoteViewHolder holder, int position) {
-        holder.textView.setText(notes.get(position));
+        holder.textView.setText(notes.get(position).text);
     }
 
     @Override
@@ -43,7 +45,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
         return notes == null ? 0 : notes.size();
     }
 
-    public void setNotes(List<String> notes) {
+    public void setNotes(List<Note> notes) {
         this.notes = notes;
         notifyDataSetChanged();
     }

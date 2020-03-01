@@ -22,6 +22,12 @@ public interface DataAccessObject {
     @Insert
     void insert(Note note);
 
+    @Query("SELECT * FROM entries WHERE id = :entryID LIMIT 1")
+    LiveData<Entry> getEntryByID(int entryID);
+
+    @Query("SELECT * FROM entries WHERE id IN (:ids)")
+    LiveData<List<Entry>> getAllEntriesForListOfIDs(List<Integer> ids);
+
     @Query("SELECT * FROM worlds")
     LiveData<List<World>> getAllWorlds();
 
@@ -32,5 +38,5 @@ public interface DataAccessObject {
     LiveData<List<Entry>> getAllEntriesForCategory(int categoryID);
 
     @Query("SELECT * FROM notes WHERE id IN (:ids)")
-    LiveData<List<Note>> getAllNotesForList(List<Integer> ids);
+    LiveData<List<Note>> getAllNotesForListOfIDs(List<Integer> ids);
 }

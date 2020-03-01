@@ -7,15 +7,27 @@ import com.google.android.material.snackbar.Snackbar;
 
 import com.johnbrockway.rpgencylopedia.data.DataAccessObject;
 import com.johnbrockway.rpgencylopedia.data.Database;
+import com.johnbrockway.rpgencylopedia.data.Entry;
+import com.johnbrockway.rpgencylopedia.data.Note;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import java.util.List;
 
 public class EntryActivity extends AppCompatActivity {
+    private RecyclerView linksRecyclerView;
+    private RecyclerView notesRecyclerView;
+    private LinksAdapter linksAdapter;
+    private NotesAdapter notesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +36,31 @@ public class EntryActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        linksRecyclerView = findViewById(R.id.links_recycler_view);
+        linksAdapter = new LinksAdapter(this);
+        linksRecyclerView.setAdapter(linksAdapter);
+        linksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        notesRecyclerView = findViewById(R.id.notes_recycler_view);
+        notesAdapter = new NotesAdapter(this);
+        notesRecyclerView.setAdapter(notesAdapter);
+        notesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        int entryID = getIntent().getIntExtra(
+                getString(R.string.intent_entry_id), -1);
+
         Database db = Database.getDatabase(this);
         DataAccessObject dao = db.dataAccessObject();
+
+        dao.getEntryByID(entryID).observe(this, new Observer<Entry>() {
+            @Override
+            public void onChanged(Entry entry) {
+                TextView textView = findViewById(R.id.entry_name);
+                textView.setText(entry.name);
+
+                populateRecyclerViews(entry);
+            }
+        });
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -57,5 +92,24 @@ public class EntryActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void populateRecyclerViews(Entry entry) {
+        Database db = Database.getDatabase(this);
+        DataAccessObject dao = db.dataAccessObject();
+
+        dao.getAllEntriesForListOfIDs(entry.links).observe(this, new Observer<List<Entry>>() {
+            @Override
+            public void onChanged(List<Entry> entries) {
+                linksAdapter.setLinks(entries);
+            }
+        });
+
+        dao.getAllNotesForListOfIDs(entry.notes).observe(this, new Observer<List<Note>>() {
+            @Override
+            public void onChanged(List<Note> notes) {
+                notesAdapter.setNotes(notes);
+            }
+        });
     }
 }

@@ -1,6 +1,7 @@
 package com.johnbrockway.rpgencylopedia;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +17,24 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.EntryVie
     private LayoutInflater layoutInflater;
     private List<Entry> entries;
 
-    public class EntryViewHolder extends RecyclerView.ViewHolder {
+    public class EntryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView textView;
 
         public EntryViewHolder(View view) {
             super(view);
             this.textView = view.findViewById(R.id.entry_text);
+
+            textView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            int entryId = entries.get(getAdapterPosition()).id;
+            Intent intent = new Intent(view.getContext(), EntryActivity.class);
+            intent.putExtra(
+                    view.getContext().getString(R.string.intent_entry_id),
+                    entryId);
+            view.getContext().startActivity(intent);
         }
     }
 
