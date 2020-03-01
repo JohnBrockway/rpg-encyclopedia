@@ -22,6 +22,8 @@ import java.util.List;
 public class EntryListActivity extends AppCompatActivity {
     private RecyclerView entriesRecyclerView;
     private EntriesAdapter entriesAdapter;
+    private Database db;
+    private DataAccessObject dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +40,9 @@ public class EntryListActivity extends AppCompatActivity {
         entriesRecyclerView.setAdapter(entriesAdapter);
         entriesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        Database db = Database.getDatabase(this);
-        DataAccessObject dao = db.dataAccessObject();
+        db = Database.getDatabase(this);
+        dao = db.dataAccessObject();
+
         dao.getAllEntriesForCategory(categoryID).observe(this, new Observer<List<Entry>>() {
             @Override
             public void onChanged(List<Entry> entries) {

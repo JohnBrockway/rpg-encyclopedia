@@ -28,6 +28,8 @@ public class EntryActivity extends AppCompatActivity {
     private RecyclerView notesRecyclerView;
     private LinksAdapter linksAdapter;
     private NotesAdapter notesAdapter;
+    private Database db;
+    private DataAccessObject dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +51,8 @@ public class EntryActivity extends AppCompatActivity {
         int entryID = getIntent().getIntExtra(
                 getString(R.string.intent_entry_id), -1);
 
-        Database db = Database.getDatabase(this);
-        DataAccessObject dao = db.dataAccessObject();
+        db = Database.getDatabase(this);
+        dao = db.dataAccessObject();
 
         dao.getEntryByID(entryID).observe(this, new Observer<Entry>() {
             @Override
@@ -95,9 +97,6 @@ public class EntryActivity extends AppCompatActivity {
     }
 
     private void populateRecyclerViews(Entry entry) {
-        Database db = Database.getDatabase(this);
-        DataAccessObject dao = db.dataAccessObject();
-
         dao.getAllEntriesForListOfIDs(entry.links).observe(this, new Observer<List<Entry>>() {
             @Override
             public void onChanged(List<Entry> entries) {

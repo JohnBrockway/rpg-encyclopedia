@@ -26,6 +26,8 @@ import java.util.List;
 public class CategoryListActivity extends AppCompatActivity {
     private RecyclerView categoriesRecyclerView;
     private CategoriesAdapter categoriesAdapter;
+    private Database db;
+    private DataAccessObject dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +41,8 @@ public class CategoryListActivity extends AppCompatActivity {
         categoriesRecyclerView.setAdapter(categoriesAdapter);
         categoriesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        Database db = Database.getDatabase(this);
-        DataAccessObject dao = db.dataAccessObject();
+        db = Database.getDatabase(this);
+        dao = db.dataAccessObject();
 
         addTestData();
 
@@ -112,9 +114,6 @@ public class CategoryListActivity extends AppCompatActivity {
         Note note2 = new Note(0, "note 2");
         Note note3 = new Note(0, "note 3");
         Note note4 = new Note(0, "note 4");
-
-        Database db = Database.getDatabase(this);
-        DataAccessObject dao = db.dataAccessObject();
 
         Database.databaseWriteExecutor.execute(() -> {
             dao.insert(category1);
