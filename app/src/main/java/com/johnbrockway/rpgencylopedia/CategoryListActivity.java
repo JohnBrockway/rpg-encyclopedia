@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.johnbrockway.rpgencylopedia.data.Category;
 import com.johnbrockway.rpgencylopedia.data.DataAccessObject;
 import com.johnbrockway.rpgencylopedia.data.Database;
@@ -90,8 +89,9 @@ public class CategoryListActivity extends AppCompatActivity {
     private void addTestData() {
         this.deleteDatabase("rpg_encyclopedia");
 
-        Category category1 = new Category(0, "tests", "img", "test");
-        Category category2 = new Category(0, "tests 2", "img", "test 2");List<Integer> links1 = new ArrayList<>();
+        Category category1 = new Category(0, "tests", R.drawable.ic_person_white_24dp, "test");
+        Category category2 = new Category(0, "tests 2", R.drawable.ic_add_white_24dp, "test 2");
+        List<Integer> links1 = new ArrayList<>();
         links1.add(2);
         links1.add(3);
         links1.add(4);

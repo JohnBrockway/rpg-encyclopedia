@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "categories")
 public class Category {
 
-    public Category(int world, String listLabel, String icon, String singularLabel) {
+    public Category(int world, String listLabel, int icon, String singularLabel) {
         this.world = world;
         this.listLabel = listLabel;
         this.icon = icon;
@@ -28,7 +28,7 @@ public class Category {
     public String listLabel;
 
     @ColumnInfo(name = "icon")
-    public String icon;
+    public int icon;
 
     @ColumnInfo(name = "singular_label")
     public String singularLabel;

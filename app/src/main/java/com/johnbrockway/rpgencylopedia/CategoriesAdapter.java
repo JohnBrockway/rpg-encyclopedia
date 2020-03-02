@@ -27,10 +27,18 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
         @Override
         public void onClick(View view) {
             int categoryID = categories.get(getAdapterPosition()).id;
+            String categoryName = categories.get(getAdapterPosition()).listLabel;
+            int categoryIcon = categories.get(getAdapterPosition()).icon;
             Intent intent = new Intent(view.getContext(), EntryListActivity.class);
             intent.putExtra(
                     view.getContext().getString(R.string.intent_category_id),
                     categoryID);
+            intent.putExtra(
+                    view.getContext().getString(R.string.intent_category_name),
+                    categoryName);
+            intent.putExtra(
+                    view.getContext().getString(R.string.intent_category_icon),
+                    categoryIcon);
             view.getContext().startActivity(intent);
         }
     }

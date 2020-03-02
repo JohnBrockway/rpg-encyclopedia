@@ -35,6 +35,11 @@ public class EntryListActivity extends AppCompatActivity {
 
         int categoryID = getIntent().getIntExtra(
                 getString(R.string.intent_category_id), -1);
+        String categoryName = getIntent().getStringExtra(getString(R.string.intent_category_name));
+        int categoryIcon = getIntent().getIntExtra(getString(R.string.intent_category_icon), R.drawable.ic_storage_white_24dp);
+
+        toolbar.setTitle(categoryName);
+        toolbar.setLogo(categoryIcon);
 
         entriesRecyclerView = findViewById(R.id.entries_recycler_view);
         entriesAdapter = new EntriesAdapter(this);
@@ -43,7 +48,6 @@ public class EntryListActivity extends AppCompatActivity {
 
         db = Database.getDatabase(this);
         dao = db.dataAccessObject();
-
         dao.getAllEntriesForCategory(categoryID).observe(this, new Observer<List<Entry>>() {
             @Override
             public void onChanged(List<Entry> entries) {
