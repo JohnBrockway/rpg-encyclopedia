@@ -89,8 +89,8 @@ public class CategoryListActivity extends AppCompatActivity {
     private void addTestData() {
         this.deleteDatabase("rpg_encyclopedia");
 
-        Category category1 = new Category(0, "tests", R.drawable.ic_person_white_24dp, "test");
-        Category category2 = new Category(0, "tests 2", R.drawable.ic_add_white_24dp, "test 2");
+        Category category1 = new Category(0, "people", R.drawable.ic_person_white_24dp, "person");
+        Category category2 = new Category(0, "places", R.drawable.ic_add_white_24dp, "place");
         List<Integer> links1 = new ArrayList<>();
         links1.add(2);
         links1.add(3);
@@ -107,10 +107,10 @@ public class CategoryListActivity extends AppCompatActivity {
         links4.add(1);
         links4.add(2);
         links4.add(3);
-        Entry entry1 = new Entry(0, 1, "entry 1", links1, links1);
-        Entry entry2 = new Entry(0, 1, "entry 2", links2, links2);
-        Entry entry3 = new Entry(0, 2, "entry 3", links3, links3);
-        Entry entry4 = new Entry(0, 2, "entry 4", links4, links4);
+        Entry entry1 = new Entry(0, 1, "gerbo", links1, links1);
+        Entry entry2 = new Entry(0, 1, "odo", links2, links2);
+        Entry entry3 = new Entry(0, 2, "lys", links3, links3);
+        Entry entry4 = new Entry(0, 2, "house of the serpent sin", links4, links4);
         Note note1 = new Note(0, "note 1");
         Note note2 = new Note(0, "note 2");
         Note note3 = new Note(0, "note 3");
