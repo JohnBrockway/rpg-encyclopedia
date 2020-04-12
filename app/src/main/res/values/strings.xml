@@ -8,4 +8,6 @@
     <string name="intent_entry_id">intent_entry_id</string>
     <string name="intent_entry_name">intent_entry_name</string>
     <string name="all_categories_label">All Categories</string>
+    <string name="links_label">Links</string>
+    <string name="notes_label">Notes</string>
 </resources>
