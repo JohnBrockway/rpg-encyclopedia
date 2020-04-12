@@ -9,12 +9,13 @@ import java.util.List;
 @Entity(tableName = "entries")
 public class Entry {
 
-    public Entry(int world, int category, String name, List<Integer> links, List<Integer> notes) {
+    public Entry(int world, int category, String name, List<Integer> links, List<Integer> notes, int icon) {
         this.world = world;
         this.category = category;
         this.name = name;
         this.links = links;
         this.notes = notes;
+        this.icon = icon;
     }
 
     @PrimaryKey(autoGenerate = true)
@@ -49,4 +50,7 @@ public class Entry {
     @ColumnInfo(name = "notes")
     @TypeConverters({RPGTypeConverters.class})
     public List<Integer> notes;
+
+    @ColumnInfo(name = "icon")
+    public int icon;
 }

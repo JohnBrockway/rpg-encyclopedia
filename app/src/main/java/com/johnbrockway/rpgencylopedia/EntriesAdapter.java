@@ -29,11 +29,20 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.EntryVie
 
         @Override
         public void onClick(View view) {
+            int entryIcon = entries.get(getAdapterPosition()).icon;
             int entryId = entries.get(getAdapterPosition()).id;
+            String entryName = entries.get(getAdapterPosition()).name;
             Intent intent = new Intent(view.getContext(), EntryActivity.class);
             intent.putExtra(
                     view.getContext().getString(R.string.intent_entry_id),
                     entryId);
+            intent.putExtra(
+                    view.getContext().getString(R.string.intent_entry_name),
+                    entryName);
+            intent.putExtra(
+                    view.getContext().getString(R.string.intent_entry_icon),
+                    entryIcon);
+            view.getContext().startActivity(intent);
             view.getContext().startActivity(intent);
         }
     }

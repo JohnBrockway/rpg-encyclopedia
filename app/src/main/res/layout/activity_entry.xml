@@ -21,7 +21,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
+                app:logo="@drawable/ic_storage_white_24dp"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                app:title="@string/all_categories_label"
+                app:titleMargin="4dp"
+                app:titleMarginStart="30dp" />
 
         </com.google.android.material.appbar.AppBarLayout>
 

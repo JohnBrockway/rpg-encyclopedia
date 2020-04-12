@@ -29,11 +29,19 @@ public class LinksAdapter extends RecyclerView.Adapter<LinksAdapter.LinkViewHold
 
         @Override
         public void onClick(View view) {
+            int entryIcon = links.get(getAdapterPosition()).icon;
             int entryId = links.get(getAdapterPosition()).id;
+            String entryName = links.get(getAdapterPosition()).name;
             Intent intent = new Intent(view.getContext(), EntryActivity.class);
             intent.putExtra(
                     view.getContext().getString(R.string.intent_entry_id),
                     entryId);
+            intent.putExtra(
+                    view.getContext().getString(R.string.intent_entry_name),
+                    entryName);
+            intent.putExtra(
+                    view.getContext().getString(R.string.intent_entry_icon),
+                    entryIcon);
             view.getContext().startActivity(intent);
         }
     }

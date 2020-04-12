@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import com.johnbrockway.rpgencylopedia.data.DataAccessObject;
 import com.johnbrockway.rpgencylopedia.data.Database;
@@ -51,6 +50,11 @@ public class EntryActivity extends AppCompatActivity {
 
         int entryID = getIntent().getIntExtra(
                 getString(R.string.intent_entry_id), -1);
+        String entryName = getIntent().getStringExtra(getString(R.string.intent_entry_name));
+        int entryIcon = getIntent().getIntExtra(getString(R.string.intent_entry_icon), R.drawable.ic_storage_white_24dp);
+
+        toolbar.setTitle(entryName);
+        toolbar.setLogo(entryIcon);
 
         db = Database.getDatabase(this);
         dao = db.dataAccessObject();

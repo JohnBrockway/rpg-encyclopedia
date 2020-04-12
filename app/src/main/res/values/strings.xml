@@ -4,6 +4,8 @@
     <string name="intent_category_icon">intent_category_icon</string>
     <string name="intent_category_id">intent_category_id</string>
     <string name="intent_category_name">intent_category_name</string>
+    <string name="intent_entry_icon">intent_entry_icon</string>
     <string name="intent_entry_id">intent_entry_id</string>
+    <string name="intent_entry_name">intent_entry_name</string>
     <string name="all_categories_label">All Categories</string>
 </resources>
