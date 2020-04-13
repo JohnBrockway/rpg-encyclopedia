@@ -1,5 +1,8 @@
 package com.johnbrockway.rpgencylopedia;
 
+import android.app.SearchManager;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -11,6 +14,7 @@ import com.johnbrockway.rpgencylopedia.data.Entry;
 import com.johnbrockway.rpgencylopedia.data.Note;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -82,6 +86,12 @@ public class EntryActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.toolbar_search).getActionView();
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(
+                        new ComponentName(getApplicationContext(), SearchResultsActivity.class)));
         return true;
     }
 

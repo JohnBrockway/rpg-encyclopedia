@@ -39,4 +39,13 @@ public interface DataAccessObject {
 
     @Query("SELECT * FROM notes WHERE id IN (:ids)")
     LiveData<List<Note>> getAllNotesForListOfIDs(List<Integer> ids);
+
+    @Query("SELECT * FROM categories WHERE list_label LIKE '%'||:text||'%'")
+    LiveData<List<Category>> getAllCategoriesForText(String text);
+
+    @Query("SELECT * FROM entries WHERE name LIKE '%'||:text||'%'")
+    LiveData<List<Entry>> getAllEntriesForText(String text);
+
+    @Query("SELECT * FROM notes WHERE text LIKE '%'||:text||'%'")
+    LiveData<List<Note>> getAllNotesForText(String text);
 }

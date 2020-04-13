@@ -7,7 +7,7 @@ import androidx.room.TypeConverters;
 import java.util.List;
 
 @Entity(tableName = "entries")
-public class Entry {
+public class Entry implements Item{
 
     public Entry(int world, int category, String name, List<Integer> links, List<Integer> notes, int icon) {
         this.world = world;
@@ -53,4 +53,24 @@ public class Entry {
 
     @ColumnInfo(name = "icon")
     public int icon;
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public int getIcon() {
+        return icon;
+    }
+
+    @Override
+    public String getTitle() {
+        return name;
+    }
+
+    @Override
+    public ItemType getItemType() {
+        return ItemType.ENTRY;
+    }
 }

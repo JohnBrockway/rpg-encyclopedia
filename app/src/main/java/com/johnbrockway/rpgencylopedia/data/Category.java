@@ -5,7 +5,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "categories")
-public class Category {
+public class Category implements Item {
 
     public Category(int world, String listLabel, int icon, String singularLabel) {
         this.world = world;
@@ -32,4 +32,24 @@ public class Category {
 
     @ColumnInfo(name = "singular_label")
     public String singularLabel;
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public int getIcon() {
+        return icon;
+    }
+
+    @Override
+    public String getTitle() {
+        return listLabel;
+    }
+
+    @Override
+    public ItemType getItemType() {
+        return ItemType.CATEGORY;
+    }
 }
