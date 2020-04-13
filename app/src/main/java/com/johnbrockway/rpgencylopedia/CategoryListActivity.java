@@ -1,5 +1,8 @@
 package com.johnbrockway.rpgencylopedia;
 
+import android.app.SearchManager;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -11,6 +14,7 @@ import com.johnbrockway.rpgencylopedia.data.Entry;
 import com.johnbrockway.rpgencylopedia.data.Note;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -49,7 +53,6 @@ public class CategoryListActivity extends AppCompatActivity {
         dao.getAllCategoriesForWorld(0).observe(this, new Observer<List<Category>>() {
             @Override
             public void onChanged(List<Category> categories) {
-                Log.d("johnbrockway", Integer.toString(categories.size()));
                 categoriesAdapter.setCategories(categories);
             }
         });
@@ -68,6 +71,14 @@ public class CategoryListActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        // Get the SearchView and set the searchable configuration
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.toolbar_search).getActionView();
+        // Assumes current activity is the searchable activity
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(
+                        new ComponentName(getApplicationContext(), SearchResultsActivity.class)));
         return true;
     }
 
@@ -79,7 +90,7 @@ public class CategoryListActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.toolbar_settings) {
             return true;
         }
 

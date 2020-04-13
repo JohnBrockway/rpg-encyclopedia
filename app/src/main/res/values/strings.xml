@@ -10,4 +10,5 @@
     <string name="all_categories_label">All Categories</string>
     <string name="links_label">Links</string>
     <string name="notes_label">Notes</string>
+    <string name="search_hint">Search all entries</string>
 </resources>
