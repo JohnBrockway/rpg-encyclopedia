@@ -37,8 +37,8 @@ public interface DataAccessObject {
     @Query("SELECT * FROM entries WHERE category = :categoryID")
     LiveData<List<Entry>> getAllEntriesForCategory(int categoryID);
 
-    @Query("SELECT * FROM notes WHERE id IN (:ids)")
-    LiveData<List<Note>> getAllNotesForListOfIDs(List<Integer> ids);
+    @Query("SELECT * FROM notes WHERE entry_id = :entryId")
+    LiveData<List<Note>> getAllNotesForEntry(int entryId);
 
     @Query("SELECT * FROM categories WHERE list_label LIKE '%'||:text||'%'")
     LiveData<List<Category>> getAllCategoriesForText(String text);

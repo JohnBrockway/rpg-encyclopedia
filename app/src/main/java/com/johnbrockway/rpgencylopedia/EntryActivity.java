@@ -114,7 +114,7 @@ public class EntryActivity extends AppCompatActivity {
             }
         });
 
-        dao.getAllNotesForListOfIDs(entry.notes).observe(this, new Observer<List<Note>>() {
+        dao.getAllNotesForEntry(entry.id).observe(this, new Observer<List<Note>>() {
             @Override
             public void onChanged(List<Note> notes) {
                 notesAdapter.setNotes(notes);

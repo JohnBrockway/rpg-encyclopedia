@@ -8,9 +8,10 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "notes")
 public class Note implements Item {
 
-    public Note(int world, String text) {
+    public Note(int world, String text, int entryId) {
         this.world = world;
         this.text = text;
+        this.entryId = entryId;
     }
 
     @PrimaryKey(autoGenerate = true)
@@ -18,7 +19,7 @@ public class Note implements Item {
     public int id;
 
     /**
-     * The {@link com.johnbrockway.rpgencylopedia.data.World#id} that this category belongs to
+     * The {@link com.johnbrockway.rpgencylopedia.data.World#id} that this note belongs to
      */
     @ColumnInfo(name = "world")
     public int world;
@@ -26,6 +27,12 @@ public class Note implements Item {
     @ColumnInfo(name = "text")
     @NonNull
     public String text;
+
+    /**
+     * The {@link com.johnbrockway.rpgencylopedia.data.Entry#id} that this Note belongs to
+     */
+    @ColumnInfo(name = "entry_id")
+    public int entryId;
 
     @Override
     public int getId() {

@@ -9,12 +9,11 @@ import java.util.List;
 @Entity(tableName = "entries")
 public class Entry implements Item{
 
-    public Entry(int world, int category, String name, List<Integer> links, List<Integer> notes, int icon) {
+    public Entry(int world, int category, String name, List<Integer> links, int icon) {
         this.world = world;
         this.category = category;
         this.name = name;
         this.links = links;
-        this.notes = notes;
         this.icon = icon;
     }
 
@@ -43,13 +42,6 @@ public class Entry implements Item{
     @ColumnInfo(name = "links")
     @TypeConverters({RPGTypeConverters.class})
     public List<Integer> links;
-
-    /**
-     * List of {@link Note#id} related to this entry
-     */
-    @ColumnInfo(name = "notes")
-    @TypeConverters({RPGTypeConverters.class})
-    public List<Integer> notes;
 
     @ColumnInfo(name = "icon")
     public int icon;

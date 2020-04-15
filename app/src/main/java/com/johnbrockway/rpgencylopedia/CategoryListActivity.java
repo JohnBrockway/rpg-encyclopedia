@@ -110,14 +110,14 @@ public class CategoryListActivity extends AppCompatActivity {
         links4.add(1);
         links4.add(2);
         links4.add(3);
-        Entry entry1 = new Entry(0, 1, "gerbo", links1, links1, R.drawable.ic_person_white_24dp);
-        Entry entry2 = new Entry(0, 1, "odo", links2, links2, R.drawable.ic_person_white_24dp);
-        Entry entry3 = new Entry(0, 2, "lys", links3, links3, R.drawable.ic_add_white_24dp);
-        Entry entry4 = new Entry(0, 2, "house of the serpent sin", links4, links4, R.drawable.ic_add_white_24dp);
-        Note note1 = new Note(0, "note 1");
-        Note note2 = new Note(0, "note 2");
-        Note note3 = new Note(0, "note 3");
-        Note note4 = new Note(0, "note 4");
+        Entry entry1 = new Entry(0, 1, "gerbo", links1, R.drawable.ic_person_white_24dp);
+        Entry entry2 = new Entry(0, 1, "odo", links2, R.drawable.ic_person_white_24dp);
+        Entry entry3 = new Entry(0, 2, "lys", links3, R.drawable.ic_add_white_24dp);
+        Entry entry4 = new Entry(0, 2, "house of the serpent sin", links4, R.drawable.ic_add_white_24dp);
+        Note note1 = new Note(0, "note 1", 1);
+        Note note2 = new Note(0, "note 2", 2);
+        Note note3 = new Note(0, "note 3", 3);
+        Note note4 = new Note(0, "note 4", 4);
 
         Database.databaseWriteExecutor.execute(() -> {
             dao.insert(category1);
